@@ -1,2 +1,38 @@
-<h1>Home</h1>
-<p>Hello World !</p>
+<%= form_tag root_path ,class:"form-inline", :method => 'POST' do %>
+    <div class="form-group">
+        <%= text_field_tag 'Id' , nil, placeholder:"Enter Company Ticker Symbol", size: 50,class: "form-control" %>
+        <%= submit_tag 'Submit',class: "btn btn-success" %>
+    </div>
+<% end %>
+
+<br/><br/>
+
+<% if @stock %>
+    <% @stock.inspect %>
+    <ul class="list-group">
+    <li class="list-group-item"><strong>Company Name : </strong> <%= @stock.name %> - <%= @stock.symbol %> </li>
+    <li class="list-group-item"><strong>Current Ask : </strong> <%= @stock.l %> </li>
+    <li class="list-group-item"><strong>Earnings Per Share : </strong> <%= @stock.eps %> </li>
+    <li class="list-group-item"><strong>Price/Earnings Ratio : </strong> <% @stock.pe %> </li>
+    <li class="list-group-item"><strong>Market Cap : </strong> <%= @stock.mc %> </li>
+    <li class="list-group-item"><strong>Year High : </strong> <%= @stock.hi52 %> </li>
+    <li class="list-group-item"><strong>Year Low :</strong> <%= @stock.lo52 %> </li>
+    <li class="list-group-item"><strong>Summary :</strong> <br />
+    <% summary = @stock.summary[0] %> 
+    <% summary.each do |k,h| %>
+        <font size="2"><strong><%= k.capitalize %></strong> - <%= h %></font> <br />
+    <% end %>
+    </li>
+    </ul>
+    
+    
+    
+    
+    
+<% elsif @nothing %>
+    <%= @nothing %>
+<% end %>
+
+<% if @error %>
+    <%= @error %>
+<% end %>
