@@ -1,0 +1,44 @@
+<p>
+  
+  <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+  <% if @stock_quote %>
+  
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong><h2><%= @stock_quote.name %> - <%= @stock_quote.symbol %></h2></strong></div>
+        <div class="panel-body">
+          
+          <div class="col-md-4">
+            <h1><strong>$<%= @stock_quote.l %></strong></h1>
+            <strong>Earnings Per Share : </strong> <%= @stock_quote.eps %> </br>
+            <strong>Market Cap : </strong> <%= @stock_quote.mc %> </br>
+            <strong>Year High : </strong> <%= @stock_quote.hi52 %> </br>
+            <strong>Year Low :</strong> <%= @stock_quote.lo52 %> </br>
+          </div>
+          <div class="col-md-8"></br><br/></br></br>
+            <% if @stock_quote.summary  %>
+                    <%= @stock_quote.summary[0]['overview'] %>
+                </li>
+            <% else %>
+                <%= "Sorry!! No Data Available " %>
+            <% end %>
+          </div>
+      </div>
+       <div class="panel-footer">
+          <%= link_to 'Edit', edit_stock_path(@stock), class: "btn btn-link" %> |
+          <%= link_to 'Destroy', stock_path(@stock), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-link" %> |
+          <%= link_to 'Back', stocks_path , class: "btn btn-link"%>
+        </div> 
+    </div>
+  <% else %>
+    <h2><%= "Ohho! Sadly I have nothing to display" %></h2>
+  <% end %>
+  
+  
+
+  
+  
+</p>
+
+</br><br/>
+
+

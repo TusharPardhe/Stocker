@@ -1,0 +1,40 @@
+<h1>My Stocks</h1>
+
+<table class="table table-striped table-bordered table-hover" >
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Ticker Symbol</th>
+      <th>Current Price</th>
+      <th>Company Worth</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <% if stock.user_id == current_user.id %>
+      
+        <% @stock_quote = StockQuote::Stock.quote(stock.ticker) %>
+        <tr>
+            
+            <% if @stock_quote %>
+                <td><%= link_to @stock_quote.name, stock ,class: "btn btn-link" %></td>
+                <td><%= stock.ticker %></td>
+                <td><%= @stock_quote.l %></td>
+                <td><%= @stock_quote.mc %></td>
+            <% else %>
+                <td><%= link_to "No Such Company", stock,class: "btn btn-link" %></td>
+                <td><%= stock.ticker %></td>
+                <td><%= "No Info Yet" %></td>
+                <td><%= "No Info Yet" %></td>
+            <% end %>
+        </tr>
+      <% end %>
+       
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stock', new_stock_path, class: "btn btn-success" %>
