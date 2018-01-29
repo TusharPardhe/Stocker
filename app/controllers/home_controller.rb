@@ -5,6 +5,7 @@ class HomeController < ApplicationController
         @nothing = "Hey You Didn't Write Anything"
       elsif 
         if params[:Id]
+          @tmp = params[:Id]
           begin
             @stock = StockQuote::Stock.quote(params[:Id])
           rescue StandardError

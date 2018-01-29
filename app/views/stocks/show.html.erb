@@ -4,7 +4,7 @@
   <% if @stock_quote %>
   
     <div class="panel panel-default">
-      <div class="panel-heading"><strong><h2><%= @stock_quote.name %> - <%= @stock_quote.symbol %></h2></strong></div>
+      <div class="panel-heading"><strong><h2><%=@stock_quote.name %> - <%= @stock_quote.symbol %></h2></strong></div>
         <div class="panel-body">
           
           <div class="col-md-4">
@@ -14,7 +14,7 @@
             <strong>Year High : </strong> <%= @stock_quote.hi52 %> </br>
             <strong>Year Low :</strong> <%= @stock_quote.lo52 %> </br>
           </div>
-          <div class="col-md-8"></br><br/></br></br>
+          <div class="col-md-8">
             <% if @stock_quote.summary  %>
                     <%= @stock_quote.summary[0]['overview'] %>
                 </li>
@@ -30,7 +30,16 @@
         </div> 
     </div>
   <% else %>
-    <h2><%= "Ohho! Sadly I have nothing to display" %></h2>
+    <h1><%= "Ugh! Sadly I have nothing to display" %></h1>
+    </br><br></br><br/></br><br/>
+    </br><br/></br><br/></br><br/>
+    </br><br/></br><br/></br><br/>
+    </br><br/></br><br/></br><br/></br><br/>
+    <div class="panel-footer">
+          <%= link_to 'Edit', edit_stock_path(@stock), class: "btn btn-link" %> |
+          <%= link_to 'Destroy', stock_path(@stock), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-link" %> |
+          <%= link_to 'Back', stocks_path , class: "btn btn-link"%>
+        </div> 
   <% end %>
   
   
